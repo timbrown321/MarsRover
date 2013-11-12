@@ -24,21 +24,32 @@ public class GetStart {
             while( n-- != 0 ) {
                 input = in.readLine();
                 String[] status = input.split("[ ]+");
-                rover.setRoverStatus(Integer.parseInt(status[0]), Integer.parseInt(status[1]), status[2]);
+                switch(status[2].charAt(0)) {
+                    case 'N':
+                    case 'E':
+                    case 'S':
+                    case 'W':   rover.setRoverStatus(Integer.parseInt(status[0]), Integer.parseInt(status[1]), status[2]);  break;
+                    default:    System.out.println("Wrong input !");   continue;
+                }
 
-                String order = in.readLine();
-                int orderLen = order.length();
-                for(int i=0; i<orderLen; i++){
-                    switch(order.charAt(i)) {
-                        case 'L':   rover.turnLeft();   break;
-                        case 'R':   rover.turnRight();  break;
-                        case 'M':   {
-                            if(area.crossBorderCheck(rover))    System.out.println("Reach the border !");
-                            else    rover.move();
-                            break;
+                String order;
+                labelA:
+                while(true) {
+                    order = in.readLine();
+                    int orderLen = order.length();
+                    for(int i=0; i<orderLen; i++){
+                        switch(order.charAt(i)) {
+                            case 'L':   rover.turnLeft();   break;
+                            case 'R':   rover.turnRight();  break;
+                            case 'M':   {
+                                if(area.crossBorderCheck(rover))    System.out.println("Reach the border !");
+                                else    rover.move();
+                                break;
+                            }
+                            default:    System.out.println("Wrong input !");   continue labelA;
                         }
-                        default:    break;
                     }
+                    break;
                 }
 
                 System.out.println(rover.locationX + " " + rover.locationY + " " + rover.direction);

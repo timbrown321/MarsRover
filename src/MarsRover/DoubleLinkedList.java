@@ -41,7 +41,7 @@ public class DoubleLinkedList {
         while(whichNow.direction.charAt(0) != d.charAt(0)) {            //【whichNow.direction != d】是个死循环
             gotoNext();
         }
-        System.out.println("===" + whichNow.addToX + " " + whichNow.addToY + " " + whichNow.direction);
+        //System.out.println("===" + whichNow.addToX + " " + whichNow.addToY + " " + whichNow.direction);
         return whichNow;
     }
 
